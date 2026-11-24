@@ -1,0 +1,389 @@
+<!doctype html>
+<!--
+  VENEJUGOS 2015, tablero comercial.
+  Copyright (c) 2026 DISTRIBUIDORA VENEJUGOS 2015, C.A. Todos los derechos reservados.
+  Uso interno exclusivo. Prohibida su copia, distribucion o modificacion sin autorizacion escrita.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.sheetjs.com https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.github.com; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0F2240">
+  <title>Tablero comercial VENEJUGOS 2015</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@600;700&amp;display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/util.js" defer></script>
+  <script src="js/lectores.js" defer></script>
+  <script src="js/analisis.js" defer></script>
+  <script src="js/seguridad.js" defer></script>
+  <script src="js/carga.js" defer></script>
+  <script src="js/github.js" defer></script>
+  <script src="js/fotos.js" defer></script>
+  <script src="js/vistas.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <div class="cabecera-in">
+      <div class="marca">
+        <img class="logo" src="assets/logo.svg" alt="" width="132" height="80" fetchpriority="high">
+        <div class="marca-textos">
+          <h1 class="marca-nombre">VENEJUGOS 2015</h1>
+          <p class="marca-sub">Tablero comercial: ventas, inventario y rentabilidad</p>
+        </div>
+      </div>
+      <dl class="stats" aria-label="Resumen">
+        <div class="stat stat-total">
+          <dt>Venta neta</dt>
+          <dd class="stat-valor" id="st-venta">Sin datos</dd>
+          <dd class="stat-nota" id="st-venta-nota">Carga las ventas</dd>
+        </div>
+        <div class="stat">
+          <dt>Bajo costo</dt>
+          <dd class="stat-valor" id="st-bajo">Sin datos</dd>
+          <dd class="stat-nota" id="st-bajo-nota">Productos vendidos</dd>
+        </div>
+        <div class="stat">
+          <dt>Sin movimiento</dt>
+          <dd class="stat-valor" id="st-mov">Sin datos</dd>
+          <dd class="stat-nota" id="st-mov-nota">Productos con stock</dd>
+        </div>
+        <div class="stat">
+          <dt>Archivos</dt>
+          <dd class="stat-valor" id="st-arch">0 de 5</dd>
+          <dd class="stat-nota" id="st-arch-nota">Modalidad directa</dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+  <div class="carretera" aria-hidden="true"></div>
+
+  <nav class="pestanas" aria-label="Secciones del tablero">
+    <div class="pestanas-in" role="tablist" aria-label="Secciones">
+      <button class="pestana" type="button" role="tab" id="t-carga" aria-controls="p-carga" aria-selected="true" data-tab="carga">
+        Carga de datos <span class="insignia" id="b-carga">0</span>
+      </button>
+      <button class="pestana" type="button" role="tab" id="t-ventas" aria-controls="p-ventas" aria-selected="false" tabindex="-1" data-tab="ventas">
+        Ventas <span class="insignia" id="b-ventas" hidden></span>
+      </button>
+      <button class="pestana" type="button" role="tab" id="t-inventario" aria-controls="p-inventario" aria-selected="false" tabindex="-1" data-tab="inventario">
+        Inventario <span class="insignia" id="b-inventario" hidden></span>
+      </button>
+      <button class="pestana" type="button" role="tab" id="t-rentabilidad" aria-controls="p-rentabilidad" aria-selected="false" tabindex="-1" data-tab="rentabilidad">
+        Rentabilidad
+        <svg class="candado" id="i-candado" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 9V6.5a4 4 0 0 1 8 0V9"/><rect x="4" y="9" width="12" height="8.5" rx="2"/></svg>
+        <span class="vh" id="t-rent-estado">(protegida)</span>
+        <span class="insignia" id="b-rentabilidad" hidden></span>
+      </button>
+      <button class="pestana" type="button" role="tab" id="t-lineas" aria-controls="p-lineas" aria-selected="false" tabindex="-1" data-tab="lineas">
+        Líneas y fotos <span class="insignia" id="b-lineas" hidden></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="principal" class="principal" tabindex="-1">
+
+    <!-- ============ Carga de datos ============ -->
+    <section class="panel" id="p-carga" role="tabpanel" aria-labelledby="t-carga">
+      <div class="aviso">
+        <p><strong>Tus archivos no salen de este equipo.</strong> El tablero los lee en este navegador, descarta RIF, cédulas y direcciones, y olvida todo al cerrar la pestaña. <a href="privacidad.html">Política de privacidad</a></p>
+      </div>
+
+      <div class="rejilla-carga">
+        <!-- Inventario -->
+        <article class="tarjeta carga" id="c-inventario" aria-labelledby="h-inv">
+          <div class="carga-cab">
+            <h2 id="h-inv">Inventario</h2>
+          </div>
+          <p class="carga-ayuda">El Excel del inventario general. Si tiene varias hojas se usa la llamada «inventario».</p>
+          <div class="ranura" id="r-inventario" data-ranura="inventario" data-estado="vacio">
+            <div class="ranura-cab">
+              <h3 class="ranura-titulo">Inventario general</h3>
+              <span class="chip" data-chip>Pendiente</span>
+            </div>
+            <label class="zona" for="f-inventario">
+              <input class="vh" type="file" id="f-inventario" data-ranura="inventario" accept=".xlsx,.xlsm,.xls,.csv">
+              <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>
+              <span class="zona-txt"><span class="zona-accion">Elegir archivo</span> o soltarlo aquí</span>
+              <span class="zona-ayuda">.xlsx, .xls o .csv</span>
+            </label>
+            <div class="ranura-info" data-info aria-live="polite"></div>
+          </div>
+          <div class="carga-pie">
+            <button class="btn btn-sec" type="button" id="btn-plantilla">Descargar plantilla con vencimiento</button>
+          </div>
+        </article>
+
+        <!-- Rentabilidad -->
+        <article class="tarjeta carga" id="c-rentabilidad" aria-labelledby="h-rent">
+          <div class="carga-cab">
+            <h2 id="h-rent">Rentabilidad</h2>
+          </div>
+          <p class="carga-ayuda">Los dos reportes de rentabilidad por producto. Si se cruzan de casilla, el tablero los acomoda.</p>
+          <div class="ranura" id="r-rent-mv" data-ranura="rent-mv" data-estado="vacio">
+            <div class="ranura-cab">
+              <h3 class="ranura-titulo">Rentabilidad MobilVendor</h3>
+              <span class="chip" data-chip>Pendiente</span>
+            </div>
+            <label class="zona zona-baja" for="f-rent-mv">
+              <input class="vh" type="file" id="f-rent-mv" data-ranura="rent-mv" accept=".xlsx,.xlsm,.xls,.csv">
+              <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>
+              <span class="zona-txt"><span class="zona-accion">Elegir archivo</span> o soltarlo aquí</span>
+            </label>
+            <div class="ranura-info" data-info aria-live="polite"></div>
+          </div>
+          <div class="ranura" id="r-rent-mb" data-ranura="rent-mb" data-estado="vacio">
+            <div class="ranura-cab">
+              <h3 class="ranura-titulo">Rentabilidad Módulo B</h3>
+              <span class="chip" data-chip>Pendiente</span>
+            </div>
+            <label class="zona zona-baja" for="f-rent-mb">
+              <input class="vh" type="file" id="f-rent-mb" data-ranura="rent-mb" accept=".xlsx,.xlsm,.xls,.csv">
+              <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>
+              <span class="zona-txt"><span class="zona-accion">Elegir archivo</span> o soltarlo aquí</span>
+            </label>
+            <div class="ranura-info" data-info aria-live="polite"></div>
+          </div>
+        </article>
+
+        <!-- Ventas -->
+        <article class="tarjeta carga" id="c-ventas" aria-labelledby="h-ventas">
+          <div class="carga-cab">
+            <h2 id="h-ventas">Ventas</h2>
+          </div>
+          <fieldset class="segmentado">
+            <legend>Modalidad de lectura</legend>
+            <div class="segmentos">
+              <input type="radio" name="modo" id="modo-directo" value="directo" checked>
+              <label for="modo-directo">Archivos directos</label>
+              <input type="radio" name="modo" id="modo-dinamica" value="dinamica">
+              <label for="modo-dinamica">Agrupado (dinámica)</label>
+            </div>
+          </fieldset>
+          <p class="carga-ayuda" id="ayuda-modo">Los archivos tal como salen del sistema: uno de MobilVendor y otro de Módulo B.</p>
+
+          <div class="grupo-modo" id="g-directo">
+            <div class="ranura" id="r-ventas-mv" data-ranura="ventas-mv" data-estado="vacio">
+              <div class="ranura-cab">
+                <h3 class="ranura-titulo">Ventas MobilVendor</h3>
+                <span class="chip" data-chip>Pendiente</span>
+              </div>
+              <label class="zona zona-baja" for="f-ventas-mv">
+                <input class="vh" type="file" id="f-ventas-mv" data-ranura="ventas-mv" accept=".xlsx,.xlsm,.xls,.csv">
+                <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>
+                <span class="zona-txt"><span class="zona-accion">Elegir archivo</span> o soltarlo aquí</span>
+                <span class="zona-ayuda">El ReporteGeneral que exporta MobilVendor</span>
+              </label>
+              <div class="ranura-info" data-info aria-live="polite"></div>
+            </div>
+            <div class="ranura" id="r-ventas-mb" data-ranura="ventas-mb" data-estado="vacio">
+              <div class="ranura-cab">
+                <h3 class="ranura-titulo">Ventas Módulo B</h3>
+                <span class="chip" data-chip>Pendiente</span>
+              </div>
+              <label class="zona zona-baja" for="f-ventas-mb">
+                <input class="vh" type="file" id="f-ventas-mb" data-ranura="ventas-mb" accept=".xlsx,.xlsm,.xls,.csv">
+                <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>
+                <span class="zona-txt"><span class="zona-accion">Elegir archivo</span> o soltarlo aquí</span>
+              </label>
+              <div class="ranura-info" data-info aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="grupo-modo" id="g-dinamica" hidden>
+            <div class="ranura" id="r-ventas-din" data-ranura="ventas-din" data-estado="vacio">
+              <div class="ranura-cab">
+                <h3 class="ranura-titulo">Ventas dinámica</h3>
+                <span class="chip" data-chip>Pendiente</span>
+              </div>
+              <label class="zona" for="f-ventas-din">
+                <input class="vh" type="file" id="f-ventas-din" data-ranura="ventas-din" accept=".xlsx,.xlsm,.xls,.csv">
+                <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15"/></svg>
+                <span class="zona-txt"><span class="zona-accion">Elegir archivo</span> o soltarlo aquí</span>
+                <span class="zona-ayuda">Archivos grandes pueden tardar unos segundos</span>
+              </label>
+              <div class="ranura-info" data-info aria-live="polite"></div>
+            </div>
+          </div>
+          <p class="carga-nota">Solo cuenta una modalidad a la vez, para no sumar dos veces las mismas facturas.</p>
+        </article>
+
+        <!-- Fotos -->
+        <article class="tarjeta carga" id="c-fotos" aria-labelledby="h-fotos">
+          <div class="carga-cab">
+            <h2 id="h-fotos">Fotos de líneas</h2>
+            <span class="chip" id="chip-fotos">Sin fotos</span>
+          </div>
+          <p class="carga-ayuda">Fotos de las líneas que se están midiendo: anaquel, exhibición o despacho. Aparecen junto a los números de cada línea.</p>
+          <div class="campos">
+            <div class="campo">
+              <label for="foto-linea">Línea</label>
+              <input type="text" id="foto-linea" list="lista-lineas" autocomplete="off" maxlength="80" placeholder="Por ejemplo, BEBIDAS">
+              <datalist id="lista-lineas"></datalist>
+            </div>
+            <div class="campo">
+              <label for="foto-nota">Nota <span class="opcional">(opcional)</span></label>
+              <input type="text" id="foto-nota" autocomplete="off" maxlength="140">
+            </div>
+          </div>
+          <label class="zona zona-baja" for="f-fotos" data-zona-fotos>
+            <input class="vh" type="file" id="f-fotos" accept="image/*" multiple>
+            <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.4-2h6.2l1.4 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="12.5" r="3.5"/></svg>
+            <span class="zona-txt"><span class="zona-accion">Agregar fotos</span> o soltarlas aquí</span>
+            <span class="zona-ayuda">Se borran la ubicación GPS y los datos de la cámara</span>
+          </label>
+          <p class="carga-nota" id="fotos-resumen" aria-live="polite"></p>
+        </article>
+
+        <!-- Respaldo en GitHub -->
+        <article class="tarjeta carga" id="c-github" aria-labelledby="h-gh">
+          <div class="carga-cab">
+            <h2 id="h-gh">Respaldo cifrado en GitHub</h2>
+            <span class="chip" id="chip-gh">Sin conectar</span>
+          </div>
+          <p class="carga-ayuda">Guardar o abrir un respaldo pide dos llaves: el archivo de token y la clave de acceso. Lo que sube a GitHub ya va cifrado.</p>
+          <label class="zona zona-baja" for="f-token" id="zona-token">
+            <input class="vh" type="file" id="f-token" accept=".json,.txt,application/json,text/plain">
+            <svg class="zona-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H20m-3 0v3m-3-3v2"/></svg>
+            <span class="zona-txt"><span class="zona-accion">Elegir archivo de token</span></span>
+            <span class="zona-ayuda">Se usa solo en esta pestaña; nunca se guarda</span>
+          </label>
+          <p class="carga-nota" id="gh-estado" aria-live="polite"></p>
+          <div class="gh-acciones">
+            <button class="btn btn-primario" type="button" id="btn-gh-guardar" disabled>Guardar respaldo</button>
+            <div class="campo">
+              <label for="sel-respaldo">Respaldos guardados</label>
+              <select id="sel-respaldo" disabled>
+                <option value="">Conecta para ver la lista</option>
+              </select>
+            </div>
+            <div class="acciones">
+              <button class="btn btn-sec" type="button" id="btn-gh-abrir" disabled>Abrir respaldo</button>
+              <button class="btn btn-sec" type="button" id="btn-gh-salir" hidden>Desconectar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sesión -->
+        <article class="tarjeta carga" id="c-sesion" aria-labelledby="h-sesion">
+          <div class="carga-cab">
+            <h2 id="h-sesion">Sesión y seguridad</h2>
+          </div>
+          <p class="carga-ayuda" id="sesion-resumen">No hay datos cargados.</p>
+          <ul class="lista-seg">
+            <li>Los datos viven en la memoria de esta pestaña. No se guardan en el navegador.</li>
+            <li>Rentabilidad pide la clave y se vuelve a bloquear tras <span id="min-inactividad">15</span> minutos sin uso.</li>
+            <li>Un mismo archivo no se puede cargar dos veces.</li>
+          </ul>
+          <div class="acciones">
+            <button class="btn btn-sec" type="button" id="btn-borrar">Borrar todo lo cargado</button>
+            <button class="btn btn-sec" type="button" id="btn-nueva-clave">Preparar una clave nueva</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ Vistas de análisis ============ -->
+    <section class="panel" id="p-ventas" role="tabpanel" aria-labelledby="t-ventas" hidden>
+      <div class="vista" id="v-ventas"></div>
+    </section>
+    <section class="panel" id="p-inventario" role="tabpanel" aria-labelledby="t-inventario" hidden>
+      <div class="vista" id="v-inventario"></div>
+    </section>
+    <section class="panel" id="p-rentabilidad" role="tabpanel" aria-labelledby="t-rentabilidad" hidden>
+      <div class="vista" id="v-rentabilidad"></div>
+    </section>
+    <section class="panel" id="p-lineas" role="tabpanel" aria-labelledby="t-lineas" hidden>
+      <div class="vista" id="v-lineas"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="pie-in">
+      <p>© 2026 DISTRIBUIDORA VENEJUGOS 2015, C.A. (RIF J-29941545-6). Uso interno. Prohibida la copia o distribución de este tablero y de sus datos.</p>
+      <p><a href="privacidad.html">Política de privacidad</a> <span class="pie-version" id="pie-version"></span></p>
+    </div>
+  </footer>
+
+  <button class="btn btn-accion fab" type="button" id="fab">Elegir archivo</button>
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- Diálogos -->
+  <dialog class="dialogo" id="dlg-confirmar" aria-labelledby="dc-titulo">
+    <div class="dialogo-cab"><h2 id="dc-titulo">Confirmar</h2></div>
+    <div class="dialogo-cuerpo"><p id="dc-texto"></p></div>
+    <div class="dialogo-pie">
+      <button class="btn btn-sec" type="button" data-cerrar>Cancelar</button>
+      <button class="btn btn-primario" type="button" id="dc-aceptar">Aceptar</button>
+    </div>
+  </dialog>
+
+  <dialog class="dialogo" id="dlg-clave" aria-labelledby="dk-titulo">
+    <form id="form-clave" novalidate>
+      <div class="dialogo-cab"><h2 id="dk-titulo">Clave de acceso</h2></div>
+      <div class="dialogo-cuerpo">
+        <p id="dk-texto">Escribe la clave para continuar.</p>
+        <label for="dk-input">Clave</label>
+        <input type="password" id="dk-input" autocomplete="current-password" spellcheck="false">
+        <p class="mensaje-error" id="dk-error" role="alert"></p>
+      </div>
+      <div class="dialogo-pie">
+        <button class="btn btn-sec" type="button" data-cerrar>Cancelar</button>
+        <button class="btn btn-accion" type="submit">Continuar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialogo dialogo-foto" id="dlg-foto" aria-labelledby="df-titulo">
+    <div class="dialogo-cab">
+      <h2 id="df-titulo">Foto</h2>
+      <button class="btn-cerrar" type="button" data-cerrar aria-label="Cerrar">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>
+      </button>
+    </div>
+    <div class="dialogo-cuerpo">
+      <img id="df-img" alt="" width="1600" height="1200">
+      <p class="df-meta" id="df-meta"></p>
+    </div>
+    <div class="dialogo-pie">
+      <button class="btn btn-sec" type="button" id="df-borrar">Eliminar foto</button>
+      <button class="btn btn-primario" type="button" data-cerrar>Cerrar</button>
+    </div>
+  </dialog>
+
+  <dialog class="dialogo" id="dlg-nueva" aria-labelledby="dn-titulo">
+    <form id="form-nueva" novalidate>
+      <div class="dialogo-cab"><h2 id="dn-titulo">Preparar una clave nueva</h2></div>
+      <div class="dialogo-cuerpo">
+        <p>La clave nunca queda escrita en el código. Aquí se genera su huella para pegarla en <code>js/config.js</code> y publicar el cambio en GitHub.</p>
+        <label for="dn-1">Clave nueva (mínimo 10 caracteres)</label>
+        <input type="password" id="dn-1" autocomplete="new-password" spellcheck="false">
+        <label for="dn-2">Repite la clave nueva</label>
+        <input type="password" id="dn-2" autocomplete="new-password" spellcheck="false">
+        <p class="mensaje-error" id="dn-error" role="alert"></p>
+        <div id="dn-resultado" hidden>
+          <p>Reemplaza el bloque <code>clave</code> de <code>js/config.js</code> por este:</p>
+          <pre class="codigo" id="dn-codigo"></pre>
+          <button class="btn btn-sec" type="button" id="dn-copiar">Copiar bloque</button>
+          <p class="carga-nota">Los respaldos guardados antes del cambio se abren con la clave anterior.</p>
+        </div>
+      </div>
+      <div class="dialogo-pie">
+        <button class="btn btn-sec" type="button" data-cerrar>Cerrar</button>
+        <button class="btn btn-accion" type="submit">Generar huella</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><p class="sin-js">Este tablero necesita JavaScript activado.</p></noscript>
+</body>
+</html>

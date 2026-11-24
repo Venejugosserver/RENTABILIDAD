@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 80" width="132" height="80">
+  <!-- Marcador provisional del logo de VENEJUGOS 2015: reemplazar por el logo oficial en blanco con el mismo nombre de archivo. -->
+  <rect x="2" y="8" width="78" height="48" rx="5" fill="#FFFFFF"/>
+  <rect x="12" y="44" width="20" height="4" rx="1" fill="#E9A21B"/>
+  <rect x="40" y="44" width="20" height="4" rx="1" fill="#E9A21B"/>
+  <path d="M86 22h22.5c1.6 0 3.1.8 4 2.1l12.6 17.6c.6.9.9 1.9.9 2.9V56H86z" fill="#FFFFFF"/>
+  <path d="M92 28h15.2l8.8 12.4H92z" fill="#0F2240"/>
+  <rect x="2" y="56" width="124" height="6" rx="3" fill="#FFFFFF"/>
+  <circle cx="26" cy="64" r="11" fill="#FFFFFF" stroke="#0F2240" stroke-width="4"/>
+  <circle cx="26" cy="64" r="3.5" fill="#0F2240"/>
+  <circle cx="104" cy="64" r="11" fill="#FFFFFF" stroke="#0F2240" stroke-width="4"/>
+  <circle cx="104" cy="64" r="3.5" fill="#0F2240"/>
+</svg>
