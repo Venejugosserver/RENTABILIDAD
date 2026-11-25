@@ -1,0 +1,17 @@
+# Credenciales: el archivo de token nunca se sube
+github-token*.json
+*token*.txt
+*.token
+
+# Respaldos cifrados y archivos de datos de la empresa
+*.vjenc
+respaldos/
+*.xlsx
+*.xlsm
+*.xls
+*.csv
+
+# Sistema
+.DS_Store
+Thumbs.db
+node_modules/

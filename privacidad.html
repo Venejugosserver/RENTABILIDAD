@@ -1,0 +1,169 @@
+<!doctype html>
+<!--
+  VENEJUGOS 2015, tablero comercial.
+  Copyright (c) 2026 DISTRIBUIDORA VENEJUGOS 2015, C.A. Todos los derechos reservados.
+  Uso interno exclusivo. Prohibida su copia, distribucion o modificacion sin autorizacion escrita.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#1f4fd1">
+  <title>Política de privacidad, tablero comercial VENEJUGOS 2015</title>
+  <link rel="preload" href="bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="hanken.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-180.png">
+</head>
+<body class="pagina-texto">
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+  <header class="masthead">
+    <a class="marca" href="index.html" aria-label="VENEJUGOS 2015, volver al tablero">
+      <img src="logo-venejugos.png" alt="" width="52" height="52" fetchpriority="high">
+      <span class="marca-texto">
+        <span class="wordmark">VENEJUGOS 2015</span>
+        <span class="marca-sub">Tablero comercial</span>
+      </span>
+    </a>
+    <span class="espacio"></span>
+    <p class="volver"><a class="btn btn-primario" href="index.html">Volver al tablero</a></p>
+  </header>
+  <svg class="cinta" viewBox="0 0 1280 60" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="metal-plata" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1280" y2="0"><stop offset="0" stop-color="#ffffff"/><stop offset=".22" stop-color="#c3cde2"/><stop offset=".45" stop-color="#ffffff"/><stop offset=".7" stop-color="#a9b6cf"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+      <linearGradient id="metal-rojo" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1280" y2="0"><stop offset="0" stop-color="#ff5a6e"/><stop offset=".25" stop-color="#e2001a"/><stop offset=".5" stop-color="#8f0011"/><stop offset=".75" stop-color="#e2001a"/><stop offset="1" stop-color="#ff4d63"/></linearGradient>
+    </defs>
+    <path class="c-azul" pathLength="1600" d="M8 34 C 260 6, 520 52, 790 28 S 1120 6, 1272 22"/>
+    <path class="c-rojo" pathLength="1600" d="M8 46 C 280 20, 560 60, 820 40 S 1140 22, 1272 34"/>
+  </svg>
+
+  <main id="principal" class="principal" tabindex="-1">
+    <article class="tarjeta politica">
+      <h1>Política de privacidad y uso de la información</h1>
+      <p class="bajada">Versión 1.0, vigente desde el 23/11/2026. Aplica al tablero comercial de uso interno y a los archivos que se cargan en él.</p>
+
+      <h2>1. Responsable</h2>
+      <p>DISTRIBUIDORA VENEJUGOS 2015, C.A., RIF J-29941545-6, es responsable del tablero y de la información que se procesa en él. Los reportes del Módulo B se emiten a nombre de DISTRIBUIDORA NMS 2023, C.A., RIF J-50371989-3, y su información recibe el mismo trato.</p>
+      <p>Contacto para consultas sobre datos personales: <strong>[correo de contacto por definir]</strong>.</p>
+
+      <h2>2. Para qué se usa</h2>
+      <p>Solo para la gestión comercial interna: validar ventas (precios por debajo del costo, obsequios, devoluciones y cuadre contra los reportes de rentabilidad), medir la rotación del inventario y sugerir dónde colocar cada producto, anticipar vencimientos y revisar la rentabilidad por producto y por línea. La información no se usa para publicidad, no se vende y no se comparte con terceros.</p>
+
+      <h2>3. Qué información se carga y qué conserva el tablero</h2>
+      <div class="tabla-cont">
+        <table class="tabla">
+          <thead>
+            <tr><th scope="col">Archivo</th><th scope="col">Qué trae</th><th scope="col">Qué conserva el tablero</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-prod" data-label="Archivo"><div class="prod-nombre">Inventario general</div></td>
+              <td class="td-texto" data-label="Qué trae">Código, descripción, módulo, unidad, stock, precio, costo, línea, sublínea, unidad de negocio, impuesto y estatus.</td>
+              <td class="td-texto" data-label="Qué conserva">Todo, mientras la pestaña esté abierta, para calcular rotación, cobertura y valor del inventario.</td>
+            </tr>
+            <tr>
+              <td class="td-prod" data-label="Archivo"><div class="prod-nombre">Rentabilidad MobilVendor y Módulo B</div></td>
+              <td class="td-texto" data-label="Qué trae">Por producto: cantidad, costo, venta y margen. En el encabezado: razón social, RIF y dirección del emisor; al pie, el usuario y el equipo que generó el reporte.</td>
+              <td class="td-texto" data-label="Qué conserva">Productos, montos, período y nombre del emisor. No conserva el usuario ni el equipo.</td>
+            </tr>
+            <tr>
+              <td class="td-prod" data-label="Archivo"><div class="prod-nombre">Ventas (directos y dinámica)</div></td>
+              <td class="td-texto" data-label="Qué trae">Por línea de factura: fecha, documento, cliente (código, nombre, RIF o cédula, dirección y teléfono), vendedor, supervisor, ruta, segmento o canal, producto, cantidades, precios, descuentos, costos y motivo de las notas de crédito. El reporte de MobilVendor trae además la cédula, el teléfono y la dirección de vendedores y supervisores.</td>
+              <td class="td-texto" data-label="Qué conserva">Resúmenes por producto, ruta y segmento, incluidas las devoluciones por caducidad. De las líneas individuales, solo las que requieren revisión (vendidas bajo costo u obsequios) con fecha, documento, nombre del cliente, vendedor y ruta. Las cédulas, los RIF, las direcciones y los teléfonos de clientes, vendedores y supervisores se descartan al leer el archivo.</td>
+            </tr>
+            <tr>
+              <td class="td-prod" data-label="Archivo"><div class="prod-nombre">Equivalencias de productos</div></td>
+              <td class="td-texto" data-label="Qué trae">Pares de códigos de MobilVendor y de Módulo B que son el mismo producto, con sus nombres. Se crean en la sección privada Unificación o se cargan desde el Excel de equivalencias.</td>
+              <td class="td-texto" data-label="Qué conserva">Solo en memoria. Se guardan si el usuario descarga el Excel de equivalencias o publica los datos cifrados en GitHub.</td>
+            </tr>
+            <tr>
+              <td class="td-prod" data-label="Archivo"><div class="prod-nombre">Fotos de líneas</div></td>
+              <td class="td-texto" data-label="Qué trae">Imágenes de anaqueles, exhibiciones o despacho, con los metadatos de la cámara (a veces la ubicación GPS).</td>
+              <td class="td-texto" data-label="Qué conserva">La imagen reducida y vuelta a codificar, sin ubicación ni datos de la cámara, con la línea, la nota y la fecha de carga.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>4. Datos personales</h2>
+      <p>Los archivos de ventas contienen datos de personas naturales: clientes y vendedores. El tablero aplica la minimización descrita arriba y no envía estos datos a ningún tercero. Las fotos no deben mostrar rostros, documentos de identidad ni placas de vehículos; si aparecen, se debe eliminar la foto.</p>
+
+      <h2>5. Dónde se procesa y cuánto dura</h2>
+      <ul>
+        <li>Todo se procesa en el navegador de quien usa el tablero. Los archivos no se suben a servidores de la empresa ni de terceros.</li>
+        <li>Los datos viven en la memoria de la pestaña y se borran al cerrarla o con el botón «Borrar todo lo cargado».</li>
+        <li>El navegador guarda, sin datos comerciales: el contador de intentos fallidos de la clave y la conexión de GitHub (repositorio, rama y ruta). El token de GitHub solo se guarda si el usuario marca «Recordar el token en este navegador», y se borra con «Olvidar token».</li>
+        <li>El sitio no usa cookies, analítica ni herramientas de seguimiento.</li>
+      </ul>
+
+      <h2>6. Publicación cifrada en GitHub</h2>
+      <ul>
+        <li>Publicar es opcional y lo decide un usuario autorizado, con un token de GitHub y la clave de acceso.</li>
+        <li>El botón «Publicar dataset.json» escribe ese archivo en el repositorio del sitio para que el equipo vea los datos al abrir el tablero. Las «copias con fecha» se guardan en la carpeta «respaldos» del mismo repositorio.</li>
+        <li>Todo se cifra en el navegador antes de subir, con AES-256-GCM. La llave se deriva de la clave con PBKDF2-SHA-256 (310.000 iteraciones) y cada publicación usa una sal y un vector aleatorios. Sin la clave solo se ven la fecha de publicación, los nombres de los archivos y el período de ventas.</li>
+        <li>Si el repositorio es público, cualquiera puede descargar el archivo cifrado. Por eso la clave debe ser difícil de adivinar y conviene cambiar la actual.</li>
+        <li>Plazo de conservación: <strong>[la empresa debe definirlo; se recomienda borrar las copias con más de 12 meses]</strong>.</li>
+      </ul>
+
+      <h2>7. Control de acceso</h2>
+      <ul>
+        <li>Las secciones Rentabilidad y Unificación exigen la clave de acceso. El sitio guarda una huella de la clave (PBKDF2-SHA-256), nunca la clave.</li>
+        <li>Tras 5 intentos fallidos, el acceso queda en pausa 5 minutos.</li>
+        <li>Las secciones se vuelven a bloquear tras 15 minutos sin uso y al cerrar la pestaña.</li>
+        <li>Límite honesto: en un sitio estático el código siempre es visible, así que la clave funciona como candado de acceso y no como bóveda. Por eso lo publicado va cifrado y el token nunca se publica.</li>
+      </ul>
+
+      <h2>8. Servicios de terceros</h2>
+      <ul>
+        <li>GitHub: aloja el sitio y, si se publican, los datos cifrados y las copias con fecha.</li>
+        <li>SheetJS (lector de Excel, desde cdn.sheetjs.com o cdnjs.cloudflare.com): al descargarlo, ese servicio recibe la dirección IP y datos técnicos del navegador. No recibe el contenido de los archivos.</li>
+        <li>Las tipografías (Bricolage Grotesque y Hanken Grotesk) y el logo se sirven desde el mismo sitio; no se piden a terceros.</li>
+      </ul>
+
+      <h2>9. Protección del código y de los datos</h2>
+      <ul>
+        <li>El código y el diseño son propiedad de DISTRIBUIDORA VENEJUGOS 2015, C.A. Todos los derechos reservados; el uso se rige por el archivo LICENSE.</li>
+        <li>Se prohíbe copiar, publicar o redistribuir el código, los datos o los archivos publicados fuera de la empresa.</li>
+        <li>El tablero solo arranca en los dominios autorizados y se niega a funcionar dentro de otro sitio.</li>
+        <li>Una política de seguridad de contenido limita el sitio a su propio código, al lector de Excel y a la conexión con GitHub.</li>
+        <li>Todo texto que viene de los archivos se trata como texto, nunca como código, antes de mostrarse.</li>
+        <li>Un mismo archivo no se puede cargar dos veces, y las dos modalidades de ventas no se suman entre sí, para no duplicar información.</li>
+      </ul>
+
+      <h2>10. Derechos de las personas</h2>
+      <p>Clientes y vendedores cuyos datos aparezcan en los archivos pueden solicitar acceso, rectificación, actualización o eliminación de su información, conforme al derecho de habeas data. La solicitud se envía al contacto del punto 1.</p>
+
+      <h2>11. Compromisos de quien usa el tablero</h2>
+      <ul>
+        <li>Usarlo solo para fines de la empresa.</li>
+        <li>No compartir la clave ni el token. No marcar «Recordar el token» en equipos compartidos.</li>
+        <li>En equipos compartidos, cerrar la pestaña o usar «Borrar todo lo cargado» al terminar.</li>
+        <li>No copiar ni exportar datos de clientes para otros fines.</li>
+        <li>Si se pierde el token o se sospecha que la clave se conoce: revocar el token en GitHub, preparar una clave nueva y avisar al responsable.</li>
+      </ul>
+
+      <h2>12. Marco legal de referencia</h2>
+      <ul>
+        <li>Constitución de la República Bolivariana de Venezuela, artículo 28 (habeas data) y artículo 60 (protección del honor, la vida privada, la intimidad, la propia imagen, la confidencialidad y la reputación, y límites al uso de la informática).</li>
+        <li>Ley Especial contra los Delitos Informáticos (2001).</li>
+        <li>Ley sobre Mensajes de Datos y Firmas Electrónicas (2001).</li>
+      </ul>
+      <p class="carga-nota">Esta política es una guía interna. Debe revisarla el asesor legal de la empresa antes de darla por definitiva.</p>
+
+      <h2>13. Cambios</h2>
+      <p>La política puede actualizarse. La versión y la fecha de vigencia aparecen al inicio.</p>
+    </article>
+  </main>
+
+  <footer class="pie">
+    <div class="pie-in">
+      <p>© 2026 DISTRIBUIDORA VENEJUGOS 2015, C.A. (RIF J-29941545-6). Uso interno. Prohibida la copia o distribución de este tablero y de sus datos.</p>
+      <p><a href="index.html">Volver al tablero</a></p>
+    </div>
+  </footer>
+</body>
+</html>
